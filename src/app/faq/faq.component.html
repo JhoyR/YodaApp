@@ -1,0 +1,16 @@
+<div class="bg-body-secondary py-5 rounded-2">
+    <h1 class="dispay-6 fw-bold text-center">Registrar perguntas e respostas</h1>
+</div>
+
+<div class="row mt-5">
+    <div class="col-6">
+        <app-faq-view/>
+    </div>
+    <div class="col-6">
+        <ul class="list-group">
+            <li *ngFor="let fq of service.list">
+                {{fq.Description}}
+            </li>
+        </ul>
+    </div>
+</div>
