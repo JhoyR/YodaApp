@@ -1,0 +1,14 @@
+<form #form="ngForm" (submit)="onSubmit(form)">
+    <div class="mb-3">
+        <label>Nova pergunta!</label>
+        <input class="form-control form-control-lg"
+         placeholder="Digite sua pergunta"
+         #description="ngModel" name="description"
+         [(ngModel)]="service.formQuestion.description">
+    </div>
+    <div class="d-grid">
+        <button class="btn btn-lg btn-success" type="submit">
+            Enviar
+        </button>
+    </div>
+</form>

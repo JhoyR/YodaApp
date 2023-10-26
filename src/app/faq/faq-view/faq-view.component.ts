@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FaqComponent } from '../faq.component';
 
 @Component({
   selector: 'app-faq-view',
@@ -8,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class FaqViewComponent {
 
+  constructor(public service : FaqComponent) {
+    
+  }
 }
