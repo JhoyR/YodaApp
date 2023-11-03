@@ -1,29 +1,85 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiResponse, FaqQuestion, FaqAnswer, Question, Answer } from '../shared/faq.model';
 import { FaqService } from '../shared/faq.service';
-import { FaqItem, ApiResponse } from '../shared/faq.model';
+import { ToastrService } from 'ngx-toastr';
+import { InsertAnswerComponent } from './insert-answer/insert-answer.component';
+import { MatDialog } from "@angular/material/dialog";
+import { InsertQuestionComponent } from './insert-question/insert-question.component';
 
 @Component({
   selector: 'app-faq',
   templateUrl: './faq.component.html',
   styleUrls: [],
 })
-export class FaqComponent implements OnInit {
-  faqItems: FaqItem[] = [];
 
-  constructor(private faqService: FaqService) {}
+export class FaqComponent implements OnInit {
+  faqAnswers: FaqAnswer[] = [];
+  faqQuestions: FaqQuestion[] = [];
+
+  constructor(private service: FaqService, private toastr: ToastrService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.faqService.getFaqItems().subscribe(
-      (response: ApiResponse) => {
-        if (response.success) {
-          this.faqItems = response.data; // Armazena os objetos FAQ na variável do componente
-        } else {
-          console.error('Erro na resposta da API');
+    this.service.getAnswerItems()
+      .subscribe(
+        (response: ApiResponse) => {
+          if (response.success) {
+            console.log(response.data);
+            this.faqAnswers = response.data;
+          } else {
+            console.error('Erro na resposta da API');
+          }
+        },
+        (error) => {
+          console.error(error);
         }
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+      );
+  }
+
+  populateQuestion(selectedRecord: Question) {
+    this.service.formQuestion = Object.assign({}, selectedRecord);
+  }
+
+  populateAnswer(selectedRecord: Answer) {
+    this.service.formAnswer = Object.assign({}, selectedRecord)
+  }
+
+  onDeleteQuestion(id: number) {
+    if (confirm('Tem certeza que deseja excluir esta pergunta?'))
+      this.service.deleteQuestion(id)
+        .subscribe({
+          next: (res) => {
+            this.service.faqQuestions = res as FaqQuestion[]
+            this.toastr.error('Deleted Successfully', 'Registro de perguntas')
+          },
+          error: err => { console.log(err) }
+        })
+  }
+
+  onDeleteAnswer(id: number) {
+    if (confirm('Tem certeza que deseja excluir esta resposta?'))
+      this.service.deleteAnswer(id)
+        .subscribe({
+          next: (res) => {
+            this.service.faqQuestions = res as FaqQuestion[]
+            this.toastr.error('Deleted Successfully', 'Registro de perguntas')
+          },
+          error: err => { console.log(err) }
+        })
+  }
+
+  openAnswerDialog(answer: Answer) {
+    this.dialog.open(InsertAnswerComponent, {
+      width: "60%",
+      height: "60%",
+      data: { answer } // Passa o ID da pergunta como dados para o modal
+    });
+  }
+  openQuestionDialog(question?: Question) {
+    this.dialog.open(InsertQuestionComponent, {
+      width: "60%",
+      height: "60%",
+      data: { question } 
+    });
+
   }
 }

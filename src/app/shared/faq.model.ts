@@ -2,14 +2,26 @@
 export interface ApiResponse {
   success: boolean;
   totalRecords: number;
-  data: FaqItem[];
+  data: FaqAnswer[];
+  question: FaqQuestion[];
 }
 
-// Defina a interface para os objetos FAQ
-export interface FaqItem {
+export interface FaqQuestion {
   id: number;
   description: string;
   answerId: number;
+  answer: Answer;
+}
+
+export interface FaqAnswer {
+  id: number;
+  description: string;
+  question: Question[];
+}
+
+export interface ReturnAnswer{
+  id:number,
+  description: string;
 }
 
 // Defina a interface para os objetos Question

@@ -1,13 +1,15 @@
-<form #form="ngForm" (submit)="onSubmit(form)">
-    <div class="mb-3">
-        <label>Nova pergunta!</label>
-        <input class="form-control form-control-lg"
-         placeholder="Digite sua pergunta"
-         #description="ngModel" name="description"
-         [(ngModel)]="service.formQuestion.description">
+<form #form="ngForm" (submit)="onSubmit(form)" class="border p-3 w-100 rounded-3"
+    [class.submitted]="service.formSubmitted" novalidate autocomplete="off">
+    <div class="mb-3 text-center">
+        <label class="fw-bolder">
+            <h1>{{data.question.description}}</h1>
+            <h1>Pergunta</h1> 
+        </label>
+        <textarea rows="6" cols="50" class="form-control form-control-lg" placeholder="Digite sua pergunta" #description="ngModel"
+            name="description" [(ngModel)]="service.formQuestion.description" required minlength="5"></textarea>
     </div>
-    <div class="d-grid">
-        <button class="btn btn-lg btn-success" type="submit">
+    <div class="d-grid d-flex justify-content-center">
+        <button class="btn btn-lg btn-success w-25" type="submit">
             Enviar
         </button>
     </div>
