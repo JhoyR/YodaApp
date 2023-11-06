@@ -15,7 +15,7 @@ import { InsertQuestionComponent } from './insert-question/insert-question.compo
 export class FaqComponent implements OnInit {
   faqAnswers: FaqAnswer[] = [];
   faqQuestions: FaqQuestion[] = [];
-
+  
   constructor(private service: FaqService, private toastr: ToastrService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -67,19 +67,24 @@ export class FaqComponent implements OnInit {
         })
   }
 
-  openAnswerDialog(answer: Answer) {
+  openAnswerDialog(answer?: Answer) {
     this.dialog.open(InsertAnswerComponent, {
-      width: "60%",
-      height: "60%",
+      width: "80%",
+      height: "80%",
       data: { answer } // Passa o ID da pergunta como dados para o modal
     });
+    if(answer != null){
+      this.populateAnswer(answer);
+     }
   }
-  openQuestionDialog(question?: Question) {
+  openQuestionDialog(answer: Answer, question?: Question) {
     this.dialog.open(InsertQuestionComponent, {
-      width: "60%",
-      height: "60%",
-      data: { question } 
+      width: "80%",
+      height: "80%",
+      data: { answer, question }
     });
-
+    if(question != null){
+     this.populateQuestion(question);
+    }
   }
 }

@@ -13,13 +13,15 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 
 export class InsertQuestionComponent {
-  constructor(public service: FaqService, private toastr: ToastrService, public dialog: MatDialogRef<InsertQuestionComponent>,
+  constructor(public service: FaqService,
+     private toastr: ToastrService,
+      public dialog: MatDialogRef<InsertQuestionComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   onSubmit(form: NgForm) {
     this.service.formSubmitted = true;
-    this.service.formQuestion.answerId = this.data.id;
+    this.service.formQuestion.answerId = this.data.answer.id;
     if (form.valid) {
       if (this.service.formQuestion.id == 0 || this.service.formQuestion.id == null)
         this.insertRecord(form)

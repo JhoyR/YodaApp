@@ -4,8 +4,11 @@
 
 <div class="row">
     <div class="d-flex flex-row justify-content-center">
-        <!-- <app-insert-question class="w-50 p-2 m-2"></app-insert-question> -->
-        <app-insert-answer class="w-50 p-2 m-2"></app-insert-answer>
+        <button class="btn btn-success p-3 m-4 " (click)="openAnswerDialog()">
+           <h1>
+             Adicionar Resposta
+           </h1>
+        </button>
     </div>
     <div class="col">
         <ul class="list-group">
@@ -15,15 +18,15 @@
                     <div ngbAccordionItem>
                         <h2 ngbAccordionHeader>
                             <button ngbAccordionButton>
-                                <div class="fw-bold" hidden> {{answer.id}}</div>
-                                <div class="ms-2"> {{answer.description}}</div>
-                                <div class="mt-2 p-2 text-secondary justify-content-end align-items-center">
-                                    <button type="button" class="btn btn-outline-info" (click)="openQuestionDialog()">
+                                <div class="fw-bold"> {{answer.id}}</div>
+                                <div class="ms-1"> {{answer.description}}</div>
+                                <div class="mt-1 p-2 text-secondary justify-content-end align-items-center">
+                                    <button type="button" class="btn btn-outline-info" (click)="openQuestionDialog(answer)">
                                         Nova Pergunta
                                     </button>
                                     <span class="ms-2 p-1">Editar
                                         <i class="fa-sharp fa-regular fa-pen-to-square"
-                                            (click)="populateAnswer(answer)"></i>
+                                            (click)="openAnswerDialog(answer)"></i>
                                     </span>
                                     <span class="ms-2 p-1">
                                         <i class="fa-solid fa-trash-can fa-lg mouse-hover"
@@ -36,17 +39,14 @@
                             <div ngbAccordionBody class="d-flex justify-content-between align-items-center">
                                 <ng-template>
                                     <ol class="w-100">
-                                        <li *ngFor="let question of answer.question"
+                                        <li *ngFor="let question of answer.question" ngBind="answer"
                                             class="d-flex justify-content-between fw-medium p-2 align-items-center text-center">
-                                            <div style="width: 2rem;">
-                                                {{question.id}}
-                                            </div>
-                                            <div style="width: 20rem;">
+                                            <div style="width: 20rem;" class="text-start">
                                                 {{question.description}}
                                             </div>
                                             <span class="ms-2 p-1" style="width: 5rem;">Editar
                                                 <i class="fa-sharp fa-regular fa-pen-to-square"
-                                                    (click)="openQuestionDialog(question)"></i>
+                                                    (click)="openQuestionDialog(answer, question)"></i>
                                             </span>
                                             <span class="ms-2 p-1" style="width: 5rem;">Excluir
                                                 <i class="fa-solid fa-trash-can fa-lg mouse-hover"
