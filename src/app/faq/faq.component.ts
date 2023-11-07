@@ -35,6 +35,14 @@ export class FaqComponent implements OnInit {
       );
   }
 
+  limitResponse(desc: string) {
+    const limit = 100;
+    if (desc.length > limit) {
+      return desc.slice(0, limit) + '...';
+    }
+    return desc;
+  }
+
   populateQuestion(selectedRecord: Question) {
     this.service.formQuestion = Object.assign({}, selectedRecord);
   }
@@ -77,6 +85,7 @@ export class FaqComponent implements OnInit {
       this.populateAnswer(answer);
      }
   }
+
   openQuestionDialog(answer: Answer, question?: Question) {
     this.dialog.open(InsertQuestionComponent, {
       width: "80%",

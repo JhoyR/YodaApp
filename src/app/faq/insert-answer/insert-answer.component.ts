@@ -1,5 +1,5 @@
-import { FaqAnswer, FaqQuestion, ReturnAnswer } from './../../shared/faq.model';
-import { Component, Inject } from '@angular/core';
+import { FaqAnswer, ReturnAnswer } from './../../shared/faq.model';
+import { Component} from '@angular/core';
 import { FaqService } from 'src/app/shared/faq.service';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -11,6 +11,9 @@ import { ToastrService } from 'ngx-toastr';
   ]
 })
 export class InsertAnswerComponent {
+  textoCompleto: string = "";
+  limiteTexto: number = 40;
+
   constructor(public service: FaqService, private toastr: ToastrService) {
 
   }
@@ -47,4 +50,9 @@ export class InsertAnswerComponent {
         error: err => { console.log(err) }
       })
   }
+
+  // tinymce.init({
+  //   selector: '#editor',
+  //   language: 'pt'
+  // });
 }

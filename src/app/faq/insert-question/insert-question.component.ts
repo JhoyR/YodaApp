@@ -12,11 +12,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   ]
 })
 
-export class InsertQuestionComponent {
-  constructor(public service: FaqService,
-     private toastr: ToastrService,
-      public dialog: MatDialogRef<InsertQuestionComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+export class InsertQuestionComponent { 
+  constructor(public service: FaqService, private toastr: ToastrService, public dialog: MatDialogRef<InsertQuestionComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   onSubmit(form: NgForm) {

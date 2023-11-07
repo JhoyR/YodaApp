@@ -2,12 +2,13 @@
     [class.submitted]="service.formSubmitted" novalidate autocomplete="off">
     <div class="mb-3 text-center">
         <label class="fw-bolder">
-            <h1>{{data.answer.description}}</h1>
+            <h1 [innerHTML]="data.answer.description"></h1>
             <h1>Pergunta</h1>
         </label>
-        <textarea rows="6" cols="50" class="form-control form-control-lg" placeholder="Digite sua pergunta"
+            <editor class="w-100" [init]="{ plugins: 'lists link image table code help wordcount' }"
             #description="ngModel" name="description" [(ngModel)]="service.formQuestion.description" required
-            minlength="5"></textarea>
+            minlength="5">
+            </editor>
     </div>
     <div class="d-grid d-flex justify-content-center">
         <button class="btn btn-lg btn-success w-25" type="submit">

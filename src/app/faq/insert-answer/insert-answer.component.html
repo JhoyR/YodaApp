@@ -1,15 +1,14 @@
-<form #form="ngForm" (submit)="onSubmit(form)" class="border p-3 w-100 rounded-3"
-  [class.submitted]="service.formSubmitted" novalidate autocomplete="off">
+<form #form="ngForm" (submit)="onSubmit(form)" class="border rounded-3" [class.submitted]="service.formSubmitted"
+  novalidate autocomplete="off">
   <div class="mb-3 text-center">
-    <label class="fw-bolder">
+    <label class="fw-bolder pt-3">
       <h1>Adicionar Resposta</h1>
     </label>
-    <textarea rows="6" cols="50" class="form-control form-control-lg" placeholder="Digite sua resposta"
-      #description="ngModel" name="description" [(ngModel)]="service.formAnswer.description" required
-      minlength="5">
-    </textarea>
+    <editor class="w-100" [init]="{ plugins: 'lists link image table code help wordcount' }" #description="ngModel"
+      name="description" [(ngModel)]="service.formAnswer.description" required>
+    </editor>
   </div>
-  <div class="d-grid d-flex justify-content-center">
+  <div class="d-flex justify-content-center">
     <button class="btn btn-lg btn-success w-25" type="submit">
       Enviar
     </button>

@@ -10,6 +10,7 @@ import { InsertQuestionComponent } from './faq/insert-question/insert-question.c
 import { InsertAnswerComponent } from './faq/insert-answer/insert-answer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialogModule} from "@angular/material/dialog";
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MatDialogModule} from "@angular/material/dialog";
     ToastrModule.forRoot(),
     NgbModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    EditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
