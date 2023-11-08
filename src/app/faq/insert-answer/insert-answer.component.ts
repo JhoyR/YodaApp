@@ -50,9 +50,4 @@ export class InsertAnswerComponent {
         error: err => { console.log(err) }
       })
   }
-
-  // tinymce.init({
-  //   selector: '#editor',
-  //   language: 'pt'
-  // });
 }

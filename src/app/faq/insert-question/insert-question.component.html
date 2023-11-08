@@ -5,10 +5,9 @@
             <h1 [innerHTML]="data.answer.description"></h1>
             <h1>Pergunta</h1>
         </label>
-            <editor class="w-100" [init]="{ plugins: 'lists link image table code help wordcount' }"
-            #description="ngModel" name="description" [(ngModel)]="service.formQuestion.description" required
-            minlength="5">
-            </editor>
+        <textarea rows="10" cols="100" class="form-control form-control-lg" placeholder="Digite sua pergunta"
+        #description="ngModel" name="description" [(ngModel)]="service.formQuestion.description" required
+        minlength="5"></textarea>
     </div>
     <div class="d-grid d-flex justify-content-center">
         <button class="btn btn-lg btn-success w-25" type="submit">
